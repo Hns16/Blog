@@ -1,0 +1,18 @@
+---
+title: Next.js 14 Notes
+description: App Router 下构建博客的最小实践
+date: 2026-02-18
+tags:
+  - nextjs14
+  - app-router
+---
+
+## 为什么用 App Router
+
+App Router 在服务端读取文件和静态生成页面都很直接。
+
+## 本项目实现要点
+
+1. 读取 `content/blog` 目录
+2. 解析 frontmatter
+3. 生成 `/blog` 列表与 `/blog/[slug]` 动态路由
