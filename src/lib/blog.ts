@@ -27,8 +27,15 @@ function assertFrontmatter(
     throw new Error(`Missing or invalid \"date\" in ${slug}.mdx`);
   }
 
-  if (data.tags !== undefined && !Array.isArray(data.tags)) {
-    throw new Error(`Invalid \"tags\" in ${slug}.mdx`);
+  const parsedDate = new Date(data.date);
+  if (Number.isNaN(parsedDate.getTime())) {
+    throw new Error(`Invalid \"date\" in ${slug}.mdx`);
+  }
+
+  if (data.tags !== undefined) {
+    if (!Array.isArray(data.tags) || data.tags.some((tag) => typeof tag !== "string")) {
+      throw new Error(`Invalid \"tags\" in ${slug}.mdx`);
+    }
   }
 }
 
@@ -67,9 +74,18 @@ function parsePost(fileName: string): BlogPost {
   };
 }
 
+function safeParsePost(fileName: string): BlogPost | null {
+  try {
+    return parsePost(fileName);
+  } catch {
+    return null;
+  }
+}
+
 export const getAllPosts = cache((): BlogListItem[] => {
   return getMdxFiles()
-    .map(parsePost)
+    .map(safeParsePost)
+    .filter((post): post is BlogPost => post !== null)
     .map(({ content: _content, ...meta }) => meta)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 });
@@ -79,11 +95,11 @@ export const getPostBySlug = cache((slug: string): BlogPost | null => {
   const mdFileName = `${slug}.md`;
 
   if (fs.existsSync(path.join(BLOG_DIR, fileName))) {
-    return parsePost(fileName);
+    return safeParsePost(fileName);
   }
 
   if (fs.existsSync(path.join(BLOG_DIR, mdFileName))) {
-    return parsePost(mdFileName);
+    return safeParsePost(mdFileName);
   }
 
   return null;

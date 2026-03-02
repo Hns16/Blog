@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "My Blog",
     template: "%s | My Blog"
   },
   description: "A minimal blog built with Next.js 14 + MDX.",
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
     title: "My Blog",
     description: "A minimal blog built with Next.js 14 + MDX.",
     type: "website",
-    url: "https://example.com"
+    url: "/"
   }
 };
 
