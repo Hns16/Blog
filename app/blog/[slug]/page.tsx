@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPostSlugs, getPostBySlug } from "@/src/lib/blog";
@@ -42,14 +43,29 @@ export default function BlogDetailPage({ params }: PageProps) {
 
   return (
     <article className="space-y-6">
-      <header className="space-y-2 border-b border-neutral-200 pb-6">
-        <h1 className="text-3xl font-bold">{post.title}</h1>
-        <p className="text-neutral-600">{post.description}</p>
-        <p className="text-sm text-neutral-500">{post.date}</p>
+      <Link className="text-sm ui-muted underline-offset-4 hover:underline" href="/blog">
+        返回博客列表
+      </Link>
+
+      <header className="ui-card space-y-3">
+        <p className="text-xs ui-muted">{post.date}</p>
+        <h1 className="text-3xl font-bold leading-tight sm:text-4xl">{post.title}</h1>
+        <p className="text-sm leading-7 ui-muted">{post.description}</p>
+        {!!post.tags?.length && (
+          <div className="flex flex-wrap gap-2 pt-1">
+            {post.tags.map((tag) => (
+              <Link className="btn-secondary px-2 py-1 text-xs" href={`/blog?tag=${encodeURIComponent(tag)}`} key={tag}>
+                #{tag}
+              </Link>
+            ))}
+          </div>
+        )}
       </header>
 
-      <div className="max-w-none space-y-4 leading-7">
-        <MDXRemote source={post.content} />
+      <div className="ui-card">
+        <div className="prose-post">
+          <MDXRemote source={post.content} />
+        </div>
       </div>
     </article>
   );

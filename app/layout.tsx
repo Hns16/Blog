@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import ThemeToggle from "./theme-toggle";
 import "./globals.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { getSiteUrl } from "@/src/lib/env";
+
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -21,11 +25,37 @@ export const metadata: Metadata = {
   }
 };
 
+const themeScript = `(() => {
+  try {
+    const saved = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved === 'light' || saved === 'dark' ? saved : (systemDark ? 'dark' : 'light');
+    document.documentElement.dataset.theme = theme;
+  } catch {}
+})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN">
-      <body className="bg-neutral-50 text-neutral-900">
-        <main className="mx-auto max-w-3xl px-6 py-10">{children}</main>
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <main className="ui-shell">
+          <header className="ui-card flex flex-wrap items-center justify-between gap-3">
+            <Link className="text-lg font-semibold" href="/">
+              My Blog
+            </Link>
+            <nav className="flex flex-wrap items-center gap-2 text-sm">
+              <Link className="btn-secondary" href="/blog">
+                博客
+              </Link>
+              <Link className="btn-secondary" href="/admin">
+                管理
+              </Link>
+              <ThemeToggle />
+            </nav>
+          </header>
+          {children}
+        </main>
       </body>
     </html>
   );

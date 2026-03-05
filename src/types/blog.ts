@@ -8,8 +8,10 @@ export type BlogFrontmatter = {
 export type BlogPost = BlogFrontmatter & {
   slug: string;
   content: string;
+  excerpt: string;
 };
 
 export type BlogListItem = BlogFrontmatter & {
   slug: string;
+  excerpt: string;
 };

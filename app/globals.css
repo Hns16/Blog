@@ -4,8 +4,162 @@
 
 :root {
   color-scheme: light;
+  --bg-page: #f6f7f8;
+  --bg-surface: #ffffff;
+  --bg-soft: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #111827;
+  --primary-contrast: #ffffff;
+  --success-bg: #ecfdf3;
+  --success-border: #b7ebc7;
+  --success-text: #0f5132;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-text: #b91c1c;
+  --warn-bg: #fffbeb;
+  --warn-border: #fde68a;
+  --warn-text: #92400e;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-page: #0b1220;
+  --bg-surface: #111827;
+  --bg-soft: #0f172a;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border: #1f2937;
+  --primary: #e5e7eb;
+  --primary-contrast: #111827;
+  --success-bg: #052e1b;
+  --success-border: #166534;
+  --success-text: #86efac;
+  --error-bg: #3a1111;
+  --error-border: #7f1d1d;
+  --error-text: #fca5a5;
+  --warn-bg: #3b2a0f;
+  --warn-border: #6b4f1d;
+  --warn-text: #fcd34d;
 }
 
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg-page);
+  color: var(--text-main);
+}
+
+.ui-shell {
+  @apply mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6 sm:py-10;
+}
+
+.ui-card {
+  @apply rounded-xl border p-5;
+  border-color: var(--border);
+  background: var(--bg-surface);
+}
+
+.ui-soft {
+  @apply rounded-xl border p-5;
+  border-color: var(--border);
+  background: var(--bg-soft);
+}
+
+.ui-muted {
+  color: var(--text-muted);
+}
+
+.btn-primary {
+  @apply rounded px-4 py-2 text-sm font-medium;
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.btn-secondary {
+  @apply rounded border px-3 py-1.5 text-sm;
+  border-color: var(--border);
+  background: var(--bg-surface);
+  color: var(--text-main);
+}
+
+.btn-danger {
+  @apply rounded border px-2 py-1 text-xs;
+  border-color: var(--error-border);
+  color: var(--error-text);
+}
+
+.form-label {
+  @apply block text-sm font-medium;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  @apply w-full rounded border px-3 py-2 text-sm;
+  border-color: var(--border);
+  background: var(--bg-surface);
+  color: var(--text-main);
+}
+
+.notice-success {
+  @apply rounded border px-3 py-2 text-sm;
+  border-color: var(--success-border);
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.notice-error {
+  @apply rounded border px-3 py-2 text-sm;
+  border-color: var(--error-border);
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+.notice-warn {
+  @apply rounded border px-3 py-2 text-sm;
+  border-color: var(--warn-border);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+.prose-post {
+  @apply max-w-none text-[15px] leading-8;
+  color: var(--text-main);
+}
+
+.prose-post h2 {
+  @apply mt-10 text-2xl font-semibold;
+}
+
+.prose-post h3 {
+  @apply mt-8 text-xl font-semibold;
+}
+
+.prose-post p {
+  @apply mt-4;
+}
+
+.prose-post ul,
+.prose-post ol {
+  @apply mt-4 space-y-2 pl-6;
+}
+
+.prose-post li {
+  @apply leading-7;
+}
+
+.prose-post pre {
+  @apply mt-5 overflow-x-auto rounded-lg border p-4 text-sm;
+  border-color: var(--border);
+  background: var(--bg-soft);
+}
+
+.prose-post code {
+  @apply rounded px-1.5 py-0.5 text-[0.9em];
+  background: var(--bg-soft);
+}
+
+.prose-post pre code {
+  @apply bg-transparent p-0;
 }
