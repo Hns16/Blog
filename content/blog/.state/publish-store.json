@@ -1,28 +1,30 @@
 {
   "version": 1,
   "posts": {
-    "1": {
-      "slug": "1",
+    "2": {
+      "slug": "2",
       "status": "published",
-      "publishedRevisionId": "1772715113724-kyuldj",
-      "latestDraftRevisionId": "1772715113724-kyuldj",
-      "publishedAt": "2026-03-05T12:51:53.723Z",
+      "publishedRevisionId": "1772773780630-ci3agf",
+      "latestDraftRevisionId": "1772773780630-ci3agf",
+      "publishedAt": "2026-03-06T05:09:40.630Z",
       "revisions": [
         {
-          "slug": "1",
-          "revisionId": "1772715113724-kyuldj",
+          "slug": "2",
+          "revisionId": "1772773780630-ci3agf",
           "status": "published",
-          "createdAt": "2026-03-05T12:51:53.723Z",
-          "updatedAt": "2026-03-05T12:51:53.723Z",
-          "publishedAt": "2026-03-05T12:51:53.723Z",
-          "title": "123123",
-          "description": "1231231234",
-          "date": "2026-03-02",
-          "tags": [],
-          "contentPath": ".revisions/1/1772715113724-kyuldj.mdx"
+          "createdAt": "2026-03-06T05:09:40.630Z",
+          "updatedAt": "2026-03-06T05:09:40.630Z",
+          "publishedAt": "2026-03-06T05:09:40.630Z",
+          "title": "2026/3/6 AI观察",
+          "description": "2026/3/6 AI观察",
+          "date": "2026-03-06",
+          "tags": [
+            "AI"
+          ],
+          "contentPath": ".revisions/2/1772773780630-ci3agf.mdx"
         }
       ],
-      "updatedAt": "2026-03-05T12:51:53.723Z"
+      "updatedAt": "2026-03-06T05:09:40.630Z"
     }
   }
 }
